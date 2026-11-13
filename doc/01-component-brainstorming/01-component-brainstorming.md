@@ -1,13 +1,10 @@
 # Portfolio Part 1: Component Brainstorming
 
-- **Name**: <!-- TODO: fill with first and last name (e.g., Brutus Buckeye) then delete this comment -->
-- **Dot Number**: <!-- TODO: fill with OSU dot number (e.g., buckeye.17) then delete this comment -->
-- **Due Date**: <!-- TODO: fill with due date and time (e.g., 10/17 @ 3:10 PM EST) then delete this comment -->
+- **Name**: Roshni Patel
+- **Dot Number**: Patel.6429
+- **Due Date**: 11/13
 
 ## Assignment Overview
-
-<!-- TODO: read the assignment overview then delete this comment -->
-
 The overall goal of the portfolio project is to have you design and implement
 your own OSU component. There are no limits to what you choose to design and
 implement, but your component must fit within the constraints of our software
@@ -28,8 +25,6 @@ detailed feedback, which may help you decide which component to ultimately
 implement.
 
 ## Assignment Checklist
-
-<!-- TODO: browse the checklist then delete this comment -->
 
 To be sure you have completed everything on this assignment, we have littered
 this document with TODO comments. You can browse all of them in VSCode by
@@ -52,8 +47,6 @@ to the tree diagram (you may remove this one as well):
 
 ## Assignment Learning Objectives
 
-<!-- TODO: read the assignment learning objectives then delete this comment -->
-
 Without learning objectives, there really is no clear reason why a particular
 assessment or activity exists. Therefore, to be completely transparent, here is
 what we're hoping you will learn through this particular aspect of the portfolio
@@ -66,8 +59,6 @@ project. Specifically, students should be able to:
    discipline
 
 ## Assignment Rubric: 10 Points
-
-<!-- TODO: read the assignment rubric then delete this comment -->
 
 Again, to be completely transparent, most of the portfolio project, except the
 final submission, is designed as a formative assessment. Formative assessments
@@ -106,15 +97,12 @@ Below is further rationale/explanation for the rubric items above:
 > brainstorming. Plus it helps us get to know you better! Feel free to share
 > images in this section.
 
-<!-- TODO: briefly talk about your interests then delete this comment.
-Also, protip: you can preview what your response looks like by hitting
-the magnifying glass icon in the upper-right corner or pressing CTRL+K and
-then V. This kind of button combination is called a chord, for whatever
-reason -->
+I'm a 3rd year Computer Science Engineering major at Ohio State, and my
+long-term goal is to work as a software developer after graduation. I'm interested in this field because I want a stable career for the future.
+
+Outside of class I enjoy playing tennis, watching movies/tv, and hanging out with friends and family. I also like music, cooking, and painting.
 
 ## Assignment
-
-<!-- TODO: read the assignment section then delete this comment -->
 
 As previously stated, you are tasked with brainstorming 3 possible components.
 To aid you in this process, we have provided [some example components][example-components]
@@ -122,7 +110,6 @@ that may help you in your brainstorming. All of these components were made at
 some point by one of your peers, so you should feel confident that you can
 accomplish any of them.
 
-<!-- TODO: browse the list of possible projects then delete this comment -->
 
 There is no requirement that you use any of the components listed above.
 If you want to model something else, go for it! Very common early object
@@ -142,8 +129,6 @@ list-like components that have different ways of manipulating the data. Think
 about different ways you might allow a client to manipulate your component.
 
 ### Example Component
-
-<!-- TODO: review this example component then delete this comment -->
 
 To help you brainstorm a few components, we've provided an example below of a
 component you already know well: NaturalNumber. We highly recommend that you
@@ -211,68 +196,107 @@ will likely refine your design to make your implementation easier to use.
 
 > Please use this section to share your designs.
 
-- Component Design #1: <!-- TODO: give component a name then delete this comment -->
+- Component Design #1: TennisStats
   - **Description**:
-    - <!-- TODO: describe your component then delete this comment -->
+    - This component models a collection of per-match numbers for one tennis
+      stat, such as aces per match. The kernel only stores and removes match
+      numbers, and the secondary interface does the math on top of them.
   - **Kernel Methods**:
-    - <!-- TODO: list kernel methods then delete this comment -->
+    - `void addMatch(int count)`: adds a match's count to this
+    - `int removeAny()`: removes and returns an arbitrary match count from this
+    - `int size()`: reports the number of matches in this
   - **Secondary Methods**:
-    - <!-- TODO: list secondary methods then delete this comment -->
+    - `int total()`: reports the sum of all match counts
+    - `double average()`: reports the mean count per match
+    - `int best()`: reports the highest match count
+    - `void merge(TennisStats other)`: moves all counts from other into this
   - **Additional Considerations** (*note*: "I don't know" is an acceptable
     answer for each of the following questions):
     - Would this component be mutable? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - Yes. `addMatch`, `removeAny`, `clear`, and `transferFrom` all change
+        this, as with any component that inherits from Standard.
     - Would this component rely on any internal classes (e.g., `Map.Pair`)?
       Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - No. All methods work with plain ints or other TennisStats objects.
     - Would this component need any enums or constants (e.g.,
       `Program.Instruction`)? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - No.
     - Can you implement your secondary methods using your kernel methods?
       Answer, explain, and give at least one example:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - Yes. To implement `total`, call `removeAny` `size()` times, add up the
+        values, store each one in a temporary TennisStats with `addMatch`, and
+        then `transferFrom` the temporary back into this so it is unchanged.
+        `average` is `total` divided by the original size, and `best` uses the
+        same pattern while tracking the largest value seen.
 
-- Component Design #2: <!-- TODO: give component a name then delete this comment -->
+- Component Design #2: Watchlist
   - **Description**:
-    - <!-- TODO: describe your component then delete this comment -->
+    - This component models a set of movie and TV show titles that I want to
+      watch. The kernel adds titles, removes one, and checks whether a title is
+      present. Extra features are in the secondary interface.
   - **Kernel Methods**:
-    - <!-- TODO: list kernel methods then delete this comment -->
+    - `void add(String title)`: adds title to this
+    - `String removeAny()`: removes and returns an arbitrary title from this
+    - `boolean contains(String title)`: reports whether title is in this
+    - `int size()`: reports the number of titles in this
   - **Secondary Methods**:
-    - <!-- TODO: list secondary methods then delete this comment -->
+    - `boolean isEmpty()`: reports whether this has no titles
+    - `void merge(Watchlist other)`: moves all titles from other into this
+    - `int countStartingWith(char letter)`: reports how many titles start with
+      letter
   - **Additional Considerations** (*note*: "I don't know" is an acceptable
     answer for each of the following questions):
     - Would this component be mutable? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - Yes. `add`, `removeAny`, `clear`, and `transferFrom` all change this,
+        as with any component that inherits from Standard.
     - Would this component rely on any internal classes (e.g., `Map.Pair`)?
       Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - No. All methods work with Strings, chars, ints, or other Watchlist
+        objects.
     - Would this component need any enums or constants (e.g.,
       `Program.Instruction`)? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - No.
     - Can you implement your secondary methods using your kernel methods?
       Answer, explain, and give at least one example:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - Yes. `isEmpty` is just `size() == 0`. `merge` calls `removeAny` on
+        other and `add` on this until other is empty. `countStartingWith` calls
+        `removeAny` `size()` times, counts the titles whose first character
+        matches letter, stores each title in a temporary Watchlist with `add`,
+        and then `transferFrom` the temporary back into this so it is
+        unchanged.
 
-- Component Design #3: <!-- TODO: give component a name then delete this comment -->
+- Component Design #3: Playlist
   - **Description**:
-    - <!-- TODO: describe your component then delete this comment -->
+    - This component models an ordered list of song titles. The kernel adds
+      songs to the end and removes them from the front, like a queue. The
+      secondary methods are simple operations built on top of those two.
   - **Kernel Methods**:
-    - <!-- TODO: list kernel methods then delete this comment -->
+    - `void addSong(String title)`: adds title to the end of this
+    - `String removeFirst()`: removes and returns the first song of this
+    - `int length()`: reports the number of songs in this
   - **Secondary Methods**:
-    - <!-- TODO: list secondary methods then delete this comment -->
+    - `boolean contains(String title)`: reports whether title is in this
+    - `void append(Playlist other)`: moves all songs from other onto the end of
+      this
+    - `void rotate(int n)`: moves the first n songs of this to the end
   - **Additional Considerations** (*note*: "I don't know" is an acceptable
     answer for each of the following questions):
     - Would this component be mutable? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - Yes. `addSong`, `removeFirst`, `clear`, and `transferFrom` all change
+        this, as with any component that inherits from Standard.
     - Would this component rely on any internal classes (e.g., `Map.Pair`)?
       Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - No. Songs are represented as Strings.
     - Would this component need any enums or constants (e.g.,
       `Program.Instruction`)? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - No.
     - Can you implement your secondary methods using your kernel methods?
       Answer, explain, and give at least one example:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - Yes. `rotate(n)` calls `removeFirst` n times and calls `addSong` on
+        each result to put it at the end. `append` calls `removeFirst` on other
+        and `addSong` on this until other is empty. `contains` calls
+        `removeFirst` `length()` times, checks each song for a match, and adds
+        each one back to the end in order, so the playlist ends up unchanged.
 
 ## Post-Assignment
 
@@ -280,8 +304,6 @@ The following sections detail everything that you should do once you've
 completed the assignment.
 
 ### Changelog
-
-<!-- TODO: create CHANGELOG then delete this comment -->
 
 At the end of every assignment, you should update the
 [CHANGELOG.md](../../CHANGELOG.md) file found in the root of the project folder.
@@ -299,7 +321,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Calendar Versioning](https://calver.org/) of
 the following form: YYYY.0M.0D.
 
-## YYYY.MM.DD
+## 2026.11.10
 
 ### Added
 
@@ -320,8 +342,6 @@ of development.
 
 ### Submission
 
-<!-- TODO: read the submission instructions then delete this comment -->
-
 If you have completed the assignment using this template, we recommend that
 you convert it to a PDF before submission. If you're not sure how, check out
 this [Markdown to PDF guide][markdown-to-pdf-guide]. However, PDFs should be
@@ -330,11 +350,8 @@ all your work is there before submitting. For future assignments, you will
 just be submitting a link to a pull request. This will be the only time
 you have to submit any PDFs.
 
-<!-- TODO: upload a PDF of this document and the CHANGELOG to Carmen then delete this comment -->
 
 ### Peer Review
-
-<!-- TODO: review the peer review guidelines then delete this comment -->
 
 Following the completion of this assignment, you will be assigned three
 students' component brainstorming assignments for review. Your job during the
@@ -361,7 +378,6 @@ If you'd like to give feedback for this assignment (or any assignment, really),
 make use of [this survey][survey]. Your feedback helps make assignments
 better for future students.
 
-<!-- TODO: follow the link to share your feedback then delete this comment -->
 
 [example-components]: https://therenegadecoder.com/code/the-never-ending-list-of-small-programming-project-ideas/
 [markdown-to-pdf-guide]: https://therenegadecoder.com/blog/how-to-convert-markdown-to-a-pdf-3-quick-solutions/
